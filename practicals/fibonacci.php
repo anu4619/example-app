@@ -1,21 +1,39 @@
 <?php
+// Function to generate a Fibonacci sequence of length n
 function fibonacci($n) {
+    // Handle the case when n is 0 by returning an empty array
     if ($n <= 0) {
         return [];
-    } elseif ($n == 1) {
+    } 
+    // Handle the case when n is 1 by returning an array with a single element (0)
+    elseif ($n == 1) {
         return [0];
-    } elseif ($n == 2) {
+    } 
+    // Handle the case when n is 2 by returning an array with two elements (0, 1)
+    elseif ($n == 2) {
         return [0, 1];
-    } else {
-        $fib = fibonacci($n - 1);
-        $next = $fib[$n - 2] + $fib[$n - 3];
-        $fib[] = $next;
-        return $fib;
     }
+
+    // Initialize the first two Fibonacci numbers
+    $sequence = [0, 1];
+
+    // Calculate and store the Fibonacci numbers from the third element to the n-th element
+    for ($i = 2; $i < $n; $i++) {
+        $nextNumber = $sequence[$i - 1] + $sequence[$i - 2];
+        $sequence[] = $nextNumber;
+    }
+
+    // Return the generated Fibonacci sequence
+    return $sequence;
 }
 
-$number = 10; // Change this to the desired number of Fibonacci sequence elements
-$result = fibonacci($number);
-echo implode(', ', $result);
+// Define the desired length of the Fibonacci sequence
+$length = 10;
+
+// Generate the Fibonacci sequence
+$fibonacciSequence = fibonacci($length);
+
+// Print the Fibonacci sequence with a clear message
+echo "Fibonacci sequence of length $length: " . implode(", ", $fibonacciSequence);
 ?>
 
